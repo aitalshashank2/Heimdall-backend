@@ -1,2 +1,3 @@
 repo: <path to the local file repository containing ssh keys with .git folder in it>
 destination_file: <path to the .ssh/authorized_keys>
+secret: <Github Webhook Secret>
