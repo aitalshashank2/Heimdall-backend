@@ -1,0 +1,3 @@
+repo: <path to the local file repository containing ssh keys with .git folder in it>
+repo_file: <name of the file containing all the ssh public keys>
+destination_file: <path to the .ssh/authorized_keys>
