@@ -7,13 +7,13 @@ Automating Public Key Storage using GitHub Web-Hooks.
 ## Setup
 
 - Make an empty directory and clone this repository.
-- Initialize a virtual environment and install all the necessary dependencies using 'requirements.txt'\n
+- Initialize a virtual environment and install all the necessary dependencies using 'requirements.txt'
 	``` pip install -r requirements.txt ```
 
-- Set environment variables for flask\n
+- Set environment variables for flask
 	```
-	export FLASK_APP=logger\n
-	export FLASK_ENV=development\n
+	export FLASK_APP=logger
+	export FLASK_ENV=development
 	```
 
 - You can change the FLASK_ENV according to your needs.
@@ -30,11 +30,11 @@ Automating Public Key Storage using GitHub Web-Hooks.
 
 - Make an empty directory and set remote branch named ```origin``` to the above GitHub repository.
 
-- Now, set the environment variables in ```config.yml``` as follows:\n
+- Now, set the environment variables in ```config.yml``` as follows:
 	```
-	repo: path/to/the/directory/containing/ssh-keys (The directory containing .git folder alongside another directory called public-keys)\n
-	destination_file: path/to/the/authorized_keys/in/the/.ssh/directory (usually ~/.ssh/authorized_keys\n
-	secret: <The secret that you entered for the GitHub Webhooks\n
+	repo: path/to/the/directory/containing/ssh-keys (The directory containing .git folder alongside another directory called public-keys)
+	destination_file: path/to/the/authorized_keys/in/the/.ssh/directory (usually ~/.ssh/authorized_keys
+	secret: <The secret that you entered for the GitHub Webhooks
 	```
 
 - Run ```flask run``` in the directory containing ```logger.py```
