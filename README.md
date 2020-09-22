@@ -6,7 +6,7 @@ Be warned, I shall uphold my sacred oath to protect this realm as its gatekeeper
 
 ## Setup
 
-- Make an empty directory and clone this repository.
+- Clone this repository.
 - Initialize a virtual environment and install all the necessary dependencies using 'requirements.txt'
 	``` pip install -r requirements.txt ```
 
