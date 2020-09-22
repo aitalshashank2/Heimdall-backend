@@ -5,12 +5,13 @@ import io
 import os
 import hmac
 import hashlib
+import requests
+import json
 
 with io.open('config.yml', 'r') as stream:
     data_loaded = yaml.safe_load(stream)
 
 repo = data_loaded["repo"]
-destination_file = data_loaded["destination_file"]
 secret = data_loaded["secret"]
 
 app = Flask(__name__)
@@ -32,14 +33,22 @@ def heimdall():
         pull = subprocess.Popen(["git", "pull", "origin", "master"], cwd=repo)
         output, error = pull.communicate()
 
-        public_keys = os.listdir(repo+"public-keys/")
+        servers = os.listdir(repo+"servers/")
+        with io.open(repo+"server-mappings.yml", 'r') as stream:
+            server_mappings = yaml.safe_load(stream)
 
-        f = open(destination_file, "w")
-        for i in public_keys:
-            if i=="instructions.md":
-                continue
-            with open(os.path.join(repo+"public-keys", i), 'r') as tf:
-                f.write(tf.read())
+        for i in servers:
+            dest = server_mappings['servers'][i]
+            keys = ""
+
+            auth_users = open(repo+"servers/"+i, 'r')
+            for user in auth_users:
+                keys += open(repo+"public-keys/"+user.rstrip(), 'r').read()
+
+            # Make a post request to the server at dest
+            payload_keys = {'authorized_keys': keys}
+            payload_keys = json.dumps(payload_keys)
+            r = requests.post(dest, json=payload_keys)
 
     else:
         return "An error occured."
