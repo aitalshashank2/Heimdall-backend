@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 
-def logger():
+def heimdall():
     headers = request.headers
 
     encoded_secret = secret.encode()
